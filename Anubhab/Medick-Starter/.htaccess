@@ -1,0 +1,7 @@
+RewriteEngine on
+
+RewriteCode %{REQUEST_FILENAME} !-REQUEST_FILENAME
+
+RewriteCode %{REQUEST_FILENAME} !-d
+
+RewriteCode ^(.*)$ control.php/$1 [L]
