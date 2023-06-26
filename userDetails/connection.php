@@ -7,7 +7,7 @@ $dbname ="mydb";
 $conn = mysqli_connect($servername, $username, $password, $dbname);
 
 if($conn){
-    echo"ok";
+    echo"";
 }
 else{
     echo"db not connected";

@@ -4,8 +4,9 @@ html, body, h1, form, fieldset, legend, ol, li {
 	
 }
 body {
-/*	background-image:url(image/anubhab.jpg);*/
-	font-family: Georgia, "Times New Roman", Times, serif;
+    background-image:url(image/anubhab.jpg);  
+	
+     font-family: Georgia, "Times New Roman", Times, serif;
 
 	background-repeat: no-repeat;
     background-attachment: fixed;
