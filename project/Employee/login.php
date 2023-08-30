@@ -13,6 +13,38 @@
       <link href="assets/css/main-style.css" rel="stylesheet" />
 
 </head>
+<script>
+        function validate() {
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+
+            // Validate if both fields are empty
+            if (email === "" || password === "") {
+                document.getElementById("errorDiv1").innerText = "email are required.";
+                document.getElementById("errorDiv").innerText = "password are required.";
+                return false;
+            }
+            if(!(password.length >=3  && password.length <= 8))
+	{ 
+            document.getElementById("errorDiv2").innerText ="Please,provide min 3 & max 8 char in pass.";
+
+		//alert('Please,provide min 3 & max 8 char in pass');
+		return false;
+	}
+	
+
+            // Reset error message
+            // document.getElementById("errorDiv").innerText = "";
+
+            // // Continue with your login validation
+            // if (username === "email" && password === "password") {
+            //     alert("Login successful!");
+            //     // Here, you can redirect the user or perform other actions.
+            // } else {
+            //     alert("Invalid email or password. Please try again.");
+            // }
+        }
+        </script>
 
 <body class="body-Login-back">
 
@@ -28,13 +60,17 @@
                         <h3 class="panel-title">Please Sign In</h3>
                     </div>
                     <div class="panel-body">
-                        <form role="form" action="" method="post">
+                        <form role="form" action="" method="post" onsubmit="return validate()">
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus>
+                                    <input class="form-control" placeholder="E-mail" name="email" id="email" type="email" autofocus>
+                                    <div id="errorDiv1" style="color: red;"></div>
+
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                                    <input class="form-control" placeholder="Password" name="password" id="password"  type="password" value="">
+                                    <div id="errorDiv" style="color: red;"></div>
+
                                 </div>
                                 <div class="checkbox">
                                     <label>

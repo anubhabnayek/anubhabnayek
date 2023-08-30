@@ -48,7 +48,7 @@
                                         <div class="form-group">
                                             <label>Product image</label>
                                             <input class="form-control" type="file" name="product_img">
-                                            <img src="../upload/product/<?php echo $fetch->product_img;?>"width="250" height="250">
+                                            <img src="../upload/product_emp/<?php echo $fetch->product_img;?>"width="50" height="50">
                                         </div>
                                  <div class="form-group">
                                             <label>Description</label>

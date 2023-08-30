@@ -18,12 +18,13 @@ if(isset($_SESSION['user'])){
 
             // Validate if both fields are empty
             if (email === "" || password === "") {
-                document.getElementById("errorDiv").innerText = "Both email and password are required.";
+                document.getElementById("errorDiv1").innerText = "email are required.";
+                document.getElementById("errorDiv").innerText = "password are required.";
                 return false;
             }
             if(!(password.length >=3  && password.length <= 8))
 	{ 
-    document.getElementById("errorDiv").innerText = 'Please,provide min 3 & max 8 char in pass.';
+            document.getElementById("errorDiv2").innerText ="Please,provide min 3 & max 8 char in pass.";
 
 		//alert('Please,provide min 3 & max 8 char in pass');
 		return false;
@@ -58,14 +59,13 @@ if(isset($_SESSION['user'])){
     </div>
     <div class="container layout_padding2">
       <div class="row">
-        
-        <div class="offset-md-3 col-md-5">
+       <div class="offset-md-3 col-md-5">
           <div class="form_contaier">
             <form action="" method="post" onsubmit="return validate()">
               <div class="form-group">
                 <label for="email">Email</label>
                 <input type="email" name="email"  class="form-control" id="email">
-                <div id="errorDiv" style="color: red;"></div>
+                <div id="errorDiv1" style="color: red;"></div>
 
               </div>
               <div class="form-group">
