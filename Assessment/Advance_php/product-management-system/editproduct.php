@@ -1,3 +1,11 @@
+<?php
+if(!($_SESSION['role'])|| $_SESSION['role']==1){
+    echo"<script> 
+    window.location='login';
+    </script>
+    ";}
+    ?>
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -17,15 +25,15 @@
 
 </head>
 <?php
-if(!($_SESSION['user'])){
-    echo"<script> 
-    window.location='login';
-    </script>
-    ";}
+// if(!($_SESSION['user'])){
+//     echo"<script> 
+//     window.location='login';
+//     </script>
+//     ";}
     ?>
 <body>
       <!------MENU SECTION START-->
-<?php include('includes/header.php');?>
+<?php include('includes/header1.php');?>
     
 
 </form>
@@ -40,25 +48,16 @@ if(!($_SESSION['user'])){
                                        
                                     <div class="form-group">
                                            <label>product name</label>
-                                           <input type="text" name="product_name"  class="form-control" value="" placeholder="product name">
+                                           <input type="text" name="product_name"  class="form-control" value="<?php echo $fetch->product_name;?>" placeholder="product name">
                                        </div>
-                                     
-
-                                       <div class="form-group">
+                                    <div class="form-group">
                                            <label>product price</label>
-                                           <input type="text" name="price" class="form-control" value="<?php echo $fetch->book_name;?>" placeholder="product price" value="">
+                                           <input type="text" name="price" class="form-control" value="<?php echo $fetch->price;?>" placeholder="product price" value="">
                                        </div>
-
-                                      <!-- <div class="form-group">
-                                           <label>Author</label>
-                                           <textarea name="author" class="form-control"  placeholder="Author" ><?php echo $fetch->author;?></textarea>
-                                       </div>-->
-
-                                     
-
                                        <div class="form-group">
                                            <label>Product image</label>
-                                           <input type="text" name="product_img" class="form-control"value="<?php echo $fetch->price;?>" placeholder="price">
+                                           <input type="file" name="product_img" class="form-control">
+                                           <img src="upload/product/<?php echo $fetch->product_img;?>" height="100" width="100">
                                        </div>
                                        
                                        <input type="submit" name="submit" class="btn btn-primary" value="Edit">

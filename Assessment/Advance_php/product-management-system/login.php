@@ -83,11 +83,11 @@ if(isset($_SESSION['user'])){
 
 <div class="form-group">
 <label>Enter Email id</label>
-<input class="form-control" type="email" name="email" required autocomplete="off" />
+<input class="form-control" type="email" name="email" required autocomplete="" />
 </div>
 <div class="form-group">
 <label>Password</label>
-<input class="form-control" type="password" name="password" required autocomplete="off"  />
+<input class="form-control" type="password" name="password" required autocomplete=""  />
 <p class="help-block"><a href="user-forgot-password.php">Forgot Password</a></p>
 </div>
 <div class="form-group">

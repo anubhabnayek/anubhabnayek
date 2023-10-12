@@ -70,18 +70,18 @@ function getState(sid)
                             <form name="signup" method="post" onSubmit="return valid();">
 <div class="form-group">
 <label>Enter Full Name</label>
-<input class="form-control" type="text" name="fullname" autocomplete="off" required />
+<input class="form-control" type="text" name="fullname" autocomplete="" required />
 </div>
 
 
 <div class="form-group">
 <label>Mobile Number :</label>
-<input class="form-control" type="text" name="mobileno" maxlength="10" autocomplete="off" required />
+<input class="form-control" type="text" name="mobileno" maxlength="10" autocomplete="" required />
 </div>
                                         
 <div class="form-group">
 <label>Enter Email</label>
-<input class="form-control" type="email" name="email" id="email" onBlur="checkAvailability()"  autocomplete="off" required  />
+<input class="form-control" type="email" name="email" id="email" onBlur="checkAvailability()"  autocomplete="" required  />
    <span id="user-availability-status" style="font-size:12px;"></span> 
 </div>
 <div class="form-group">
@@ -93,7 +93,7 @@ function getState(sid)
 
 <div class="form-group">
 <label>Enter Password</label>
-<input class="form-control" type="password" name="password" autocomplete="off" required  />
+<input class="form-control" type="password" name="password" autocomplete="" required  />
 </div>
 
 <!-- <div class="form-group">
@@ -117,7 +117,7 @@ function getState(sid)
                                 ?>
             </select>
             </div>
-            <div class="form-group">
+           <div class="form-group">
              <label for="state"><span style="color: red">*</span>state:</label>
             <select id="sid" name="state" required class="form-control">
             	<option>----Select state----</option>

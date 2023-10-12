@@ -1,12 +1,19 @@
+<?php
+if(!($_SESSION['role'])|| $_SESSION['role']==2){
+echo"<script>
+window.location='login';
+</script>
+";}
+?>
 
-<?php include('includes/header.php');?>
+<?php include('includes/header1.php');?>
 <!DOCTYPE html>
 <html>
 <head>
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="assets/style.css">
 
 </head>
 
@@ -18,7 +25,7 @@
 		<div class="row">
 				<div class="col-md-5 col-sm-12 col-xs-12">
 					<div class="product-image"> 
-						<img src="image/hp-laptop.jpg" class="img-responsive"> 
+						<img src="assets/image/hp-laptop.jpg" class="img-responsive"> 
 						<span class="tag2 hot">
 							HOT
 						</span> 
@@ -71,7 +78,7 @@
 		<div class="row">
 				<div class="col-md-5 col-sm-12 col-xs-12">
 					<div class="product-image"> 
-						<img src="image\p8.jpg" alt="194x228" class="img-responsive"> 
+						<img src="assets\image\p8.jpg" alt="194x228" class="img-responsive"> 
 						<span class="tag2 hot">
 							HOT
 						</span> 
@@ -120,7 +127,7 @@
 		<div class="row">
 				<div class="col-md-5 col-sm-12 col-xs-12">
 					<div class="product-image"> 
-						<img src="image\p5.png" alt="194x228" class="img-responsive"> 
+						<img src="assets\image\p5.png" alt="194x228" class="img-responsive"> 
 						<span class="tag3 special">
 							Special
 						</span> 
@@ -169,7 +176,7 @@
 		<div class="row">
 				<div class="col-md-5 col-sm-12 col-xs-12">
 					<div class="product-image"> 
-						<img src="image/sonylaptop.jpeg" alt="194x228" class="img-responsive"> 
+						<img src="assets/image/sonylaptop.jpeg" alt="194x228" class="img-responsive"> 
 						<span class="tag2 sale">
 							SALE
 						</span> 
@@ -223,7 +230,7 @@
 		<div class="row">
 				<div class="col-md-5 col-sm-12 col-xs-12">
 					<div class="product-image"> 
-						<img src="image\p6.jpg" alt="194x228" class="img-responsive"> 
+						<img src="assets\image\p6.jpg" alt="194x228" class="img-responsive"> 
 						<span class="tag2 sale">
 							SALE
 						</span> 
@@ -276,7 +283,7 @@
 		<div class="row">
 				<div class="col-md-5 col-sm-12 col-xs-12">
 					<div class="product-image"> 
-						<img src="image\apple.jpg" alt="150x200" class="img-responsive"> 
+						<img src="assets\image\apple.jpg" alt="150x200" class="img-responsive"> 
 						<span class="tag2 sale">
 							SALE
 						</span> 

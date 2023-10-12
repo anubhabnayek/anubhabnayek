@@ -45,14 +45,14 @@ class model{
 			$i++;
 		}
       //echo $sel;
-		$run=$this->conn->query($sel);
-      return $run;
-		/*while($fetch=$run->fetch_object())  // data fetch from query
-		{
-			$arr[]=$fetch;
-		}
-    
-		if(!empty($arr))
+		$res=$this->conn->query($sel);
+      return $res;
+		// while($fetch=$run->fetch_object())  // data fetch from query
+		// {
+		// 	$arr[]=$fetch;
+		// }
+      // return $arr;
+		/*if(!empty($arr))
 		{
 			return $arr;
 		}*/

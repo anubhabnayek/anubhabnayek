@@ -1,5 +1,5 @@
 <?php
-if(!($_SESSION['user'])){
+if(!($_SESSION['role'])|| $_SESSION['role']==1){
     echo"<script> 
     window.location='login';
     </script>
@@ -42,6 +42,9 @@ if(!($_SESSION['user'])){
                     <h4 style="color:black;" class="header-line">view product</h4>
 
                 </div>
+                <div class="text-right">
+                                <a href="Add_product" class="btn btn-primary">Add Products</a>
+                            </div>
 
             </div>
             <div class="row">
@@ -58,56 +61,44 @@ if(!($_SESSION['user'])){
                                     <thead>
                                         <tr>
                                        <th><b>id</b></th>
-
+                                      <th>product_img</th>
                                             <th>product_name</th>
                                             <th>product_price</th>
                                             
-                                            <th>product_img</th>
+                                           
 
 
-                                            <?php if( (isset($_GET['delete_book']) && ($_GET['delete_book'] == "true")) || (isset($_GET['edit_book']) && ($_GET['edit_book'] == "true")) ) { ?>
 
                                             <th colspan="3" align="center">Action</th>
-                                                  <?php } ?>
+                                                
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
-                                        if(!empty($book_arr)){
-                                            foreach($book_arr as $b){
+                                        if(!empty($product_arr)){
+                                            foreach($product_arr as $b){
                                                 ?>
                                                 <tr>
-                                                <td><?php echo $b->book_id?></td>
-                                                <td><?php echo $b->category?></td>
-                                                <td><?php echo $b->book_name?></td>
-                                                <td><?php echo $b->author?></td>
-                                                <td><?php echo $b->Quantity?></td>
+                                                <td><?php echo $b->id?></td>
+											    <td><img src="upload/product/<?php echo $b->product_img;?>" height="50px" width="50px"></td>
+
+                                                <td><?php echo $b->product_name?></td>
+                                                
                                                 <td><?php echo $b->price?></td>
 
 
-                                                <?php //if(!isset($_GET['action'])) { 
-                                                    /*var_dump(isset($_GET['delete_book']));
-                                                        var_dump($_GET['delete_book'] == "true");
-                                                        var_dump($_GET);*/?>
+                                              
 
-                                            <?php if( (isset($_GET['delete_book']) && ($_GET['delete_book'] == "true")) || (isset($_GET['edit_book']) && ($_GET['edit_book'] == "true")) ) { ?>
+                                            
                                                 <td>
-                                                <?php if( isset($_GET['edit_book']) && $_GET['edit_book'] == "true") { ?>
-                                                    <a href="edit?edit_book_id=<?php echo $b->book_id;?>"class="btn btn-primary">Edit</a>
-                                                <?php } ?>
-                                                <?php if( isset($_GET['delete_book']) && $_GET['delete_book'] == "true" ) { ?>
-                                                    <a href="delete?del_book_id=<?php echo $b->book_id;?>"class="btn btn-danger">Delete</a>
-                                                <?php } ?>
+                                                
+                                                    <a href="edit?edit_product_id=<?php echo $b->id;?>"class="btn btn-primary">Edit</a>
+                                             
+                                                    <a href="delete?del_prod_id=<?php echo $b->id;?>"class="btn btn-danger">Delete</a>
+                                                <?php }} ?>
                                                 </td>
-                                             <?php } ?>
-
-                                             <?php //} ?> 
-                                            </tr>
-                                            <?php
-                                            }
-                                        }
-                                    
-                                        ?>
+                                           
+                                       
                                        
                                     </tbody>
                                 </table>
@@ -115,7 +106,7 @@ if(!($_SESSION['user'])){
                         </div>
                     </div>
                      <!-- End  Kitchen Sink -->
-                <?php// include_once('footer.php')?>
+               
                     <!--End Advanced Tables -->
                 </div>
             </div>

@@ -117,7 +117,7 @@ function getState(sid)
                                 ?>
             </select>
             </div>
-            <div class="form-group">
+           <div class="form-group">
              <label for="state"><span style="color: red">*</span>state:</label>
             <select id="sid" name="state" required class="form-control">
             	<option>----Select state----</option>

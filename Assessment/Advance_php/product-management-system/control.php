@@ -16,21 +16,24 @@ class control extends model //step 2 extends
                         case '/purchese_stock':
                             include_once('purchese_stock.php');
                             break;
-                            case '/form':
+                            case '/Add_product':
                                 if(isset($_REQUEST['submit'])){
 
-                                    $category=$_REQUEST['category'];
-                                    $book_name=$_REQUEST['book_name'];
-                                    $author=$_REQUEST['author'];
-                                    $Quantity=$_REQUEST['Quantity'];
+                                    $product_name=$_REQUEST['product_name'];
                                     $price=$_REQUEST['price'];
+                                    $product_img=$_FILES['product_img']['name'];
+                                    $path="upload/product/".$product_img;
+                                    $tmp_file=$_FILES['product_img']['tmp_name'];
+                                    move_uploaded_file($tmp_file,$path);
                                     $created_at=date('Y-m-d H:i:s');
                                     $updated_at=date('Y-m-d H:i:s');
-                                    $arr=array("category"=>$category,"book_name"=>$book_name,"author"=>$author,"Quantity"=>$Quantity,"price"=>$price,"created_at"=>$created_at,"updated_at"=>$updated_at);
-                                    $res=$this->insert('book',$arr);
+                                    $arr=array("product_name"=>$product_name,"price"=>$price,"product_img"=>$product_img,"created_at"=>$created_at,"updated_at"=>$updated_at);
+                                    $res=$this->insert('product',$arr);
                                     if($res){
                                         echo"<script>
-                                        alert(' add book id success');
+                                        alert(' add product success');
+                                        window.location='viewproduct';
+
                                         </script>";
                                     }
                                     else{
@@ -39,51 +42,57 @@ class control extends model //step 2 extends
                                         </script>";  
                                     }
                                 }
-                                include_once('form.php');
+                                include_once('Add_product.php');
                                 break;
-                                case '/viewbook':
-                                    $book_arr=$this->select('book');
-                                    include_once('viewbook.php');
+                                case '/viewproduct':
+                                    $product_arr=$this->select('product');
+                                    include_once('viewproduct.php');
                                     break;
                                      case '/edit':
-                                        if(isset($_REQUEST['edit_book_id'])){
-                                    $book_id=$_REQUEST['edit_book_id'];
-                                    $where=array("book_id"=>$book_id);
-                                    $run=$this->select_where('book',$where);
+                                        if(isset($_REQUEST['edit_product_id'])){
+                                    $id=$_REQUEST['edit_product_id'];
+                                    $where=array("id"=>$id);
+                                    $run=$this->select_where('product',$where);
                                     $fetch=$run->fetch_object();
-
+                                    $userfile=$fetch->product_img;
 
                                     if(isset($_REQUEST['submit'])){
-                                    $category=$_REQUEST['category'];
-                                    $book_name=$_REQUEST['book_name'];
-                                    $author=$_REQUEST['author'];
-                                    $Quantity=$_REQUEST['Quantity'];
+                                    $product_name=$_REQUEST['product_name'];
                                     $price=$_REQUEST['price'];
                                     $updated_at=date('Y-m-d H:i:s');
-                                    $arr=array("category"=>$category,"book_name"=>$book_name,"author"=>$author,"Quantity"=>$Quantity,"price"=>$price,"updated_at"=>$updated_at);
-                                    $res=$this->update('book',$arr,$where);
+									//image upload
+									  //if($_FILES['product_img']['size']>0)
+									$product_img=$_FILES['product_img']['name'];
+                                    $path="upload/product/".$product_img;
+                                    $tmp_file=$_FILES['product_img']['tmp_name'];
+                                    move_uploaded_file($tmp_file,$path);
+                                    $arr=array("product_name"=>$product_name,"price"=> $price,"product_img"=>$product_img,"updated_at"=>$updated_at);
+                                    $res=$this->update('product',$arr,$where);
+									//echo"<pre>";print_r($_FILES);exit;
+
                                     if($res){
+										  unlink('upload/product/'.$userfile);
                                         echo"<script>
                                         alert('Customer update Success');
-                                        window.location='viewbook?edit_book=true';
+                                        window.location='viewproduct';
                                         </script>"; 
                                     }
                                     
                                         }
                                     }
 
-                                        include_once('editbook.php');
+                                        include_once('editproduct.php');
                                         break;
                                         case '/delete':
-                                         if(isset($_REQUEST['del_book_id'])){
-                                         $book_id=$_REQUEST['del_book_id'];
+                                         if(isset($_REQUEST['del_prod_id'])){
+                                         $id=$_REQUEST['del_prod_id'];
                                         //echo"<pre>";print_r($_REQUEST);exit;
-                                         $where=array("book_id"=>$book_id);
-                                         $res=$this->delete_where('book',$where);
+                                         $where=array("id"=>$id);
+                                         $res=$this->delete_where('product',$where);
                                          if($res){
                                             echo"<script>
                                             alert('delete data Success');
-                                            window.location='viewbook?delete_book=true';
+                                            window.location='viewproduct?delete_book=true';
                                             </script>";
                                         }else{
                                             echo"fail";
@@ -106,7 +115,7 @@ class control extends model //step 2 extends
                                 $password=md5($_POST['password']);
 								$gender=$_POST['gender'];
 								$city=$_POST['city'];
-                                $state=$_POST['state'];
+                               $state=$_POST['state'];
                                 $created_at=date("y-m-d H:i:s");
                                 $updated_at=date("y-m-d H:i:s");
                                 $role=1;
@@ -169,18 +178,22 @@ class control extends model //step 2 extends
                                         {
                                             $city_id=$_REQUEST['btn'];
                                             $where=array("city_id"=>$city_id);
-                                            $state_arr=$this->select_where('state',$where);
+                                            $run=$this->select_where('state',$where);
                                             ?>
                                             <option>------------Select State----</option>
                                             <?php
-                                            foreach($state_arr as $r)
-                                            {
-                                            ?>
-                                                <option value="<?php echo $r->sid; ?>">
-                                                                <?php echo $r->snm; ?>
-                                                </option>
-                                            <?php 
-                                            }
+                                                $state_arr = array();
+                                                while($fetch=$run->fetch_object()){
+                                                    $state_arr[]=$fetch;
+                                                }
+                                                foreach($state_arr as $r)
+                                                {
+                                                ?>
+                                                    <option value="<?php echo $r->sid;?>">
+                                                                    <?php echo $r->snm;?>
+                                                    </option>
+                                                <?php 
+                                                }
                                         }
                                     
                                     break;
@@ -189,7 +202,7 @@ class control extends model //step 2 extends
 
                                 
                                     case '/login':
-                                      $arr_role=$this->select('role');
+                                    $arr_role=$this->select('role');
                                     if(isset($_REQUEST['login'])){
                                     $email=$_REQUEST['email'];
                                     $password=md5($_REQUEST['password']);
@@ -197,17 +210,15 @@ class control extends model //step 2 extends
                                   // echo"<pre>";print_r($_REQUEST);exit;
 
 
-                                    $where=array("email"=>$email,"password"=>$password,"role"=>$role);
+                                   $where=array("email"=>$email,"password"=>$password,"role"=>$role);
                                     $table = "customers";
 
                                     if ($role == "2") {
-                                        $table = "product_manager";
+                                    $table = "product_manager";
                                     }
                                     
                                     $res = $this->select_where($table,$where);
-                                    //$res=$this->select_where('customers',$where);
-
-                                    //echo"<pre>";print_r($res);exit;
+                                    
                                     $chk=$res->num_rows; //condition res check by rows
 									if($chk==1)  //1 means true
 									 {
@@ -221,7 +232,7 @@ class control extends model //step 2 extends
                                         }
                                         elseif($role == "2") {
                                             echo"<script>
-                                            alert('Customers login Success');
+                                            alert('product manager login Success');
                                             window.location='Add_product';
                                             </script>"; 
                                         }
