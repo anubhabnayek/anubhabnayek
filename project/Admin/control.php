@@ -1,3 +1,4 @@
+
 <?php
 include_once('../medical/model.php');
 class control extends model{

@@ -37,7 +37,7 @@
                                             <th>Gender</th>
                                             <th>Language</th>
                                             <th>Email</th>
-                                            <th colspan="2" align="center">Action</th>
+                                            <th  align="center">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
